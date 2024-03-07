@@ -1,0 +1,22 @@
+﻿@ToDoAPI_HostAddress = https://localhost:7143
+
+POST {{ToDoAPI_HostAddress}}/todoitems
+
+###
+
+POST {{ToDoAPI_HostAddress}}/todoitems
+Content-Type: application/json
+
+{
+  "name":"walk dog",
+  "isComplete":true
+}
+###
+
+GET {{ToDoAPI_HostAddress}}/todoitems
+
+###
+
+GET {{ToDoAPI_HostAddress}}/todoitems/2
+
+###

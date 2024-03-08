@@ -17,6 +17,28 @@ GET {{ToDoAPI_HostAddress}}/todoitems
 
 ###
 
-GET {{ToDoAPI_HostAddress}}/todoitems/2
+GET {{ToDoAPI_HostAddress}}/todoitems/1
+
+###
+
+PUT {{ToDoAPI_HostAddress}}/todoitems/2
+Content-Type: application/json
+
+{
+  "id": 2 ,
+  "name": "feed fish",
+  "isComplete": false
+}
+###
+
+PUT {{ToDoAPI_HostAddress}}/todoitems/{id}
+
+###
+
+DELETE {{ToDoAPI_HostAddress}}/todoitems/1
+
+###
+
+GET {{ToDoAPI_HostAddress}}/todoitems/
 
 ###

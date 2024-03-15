@@ -1,26 +1,35 @@
 using Microsoft.EntityFrameworkCore;
+using Treblle.Net.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddTreblle("BimNc8dLhG2AYYGL9HCFVk4X4JPRylUa", "ePNDo6aOkkJWznwE");
 var app = builder.Build();
 
 var todoItems = app.MapGroup("/todoitems");
 
+todoItems.MapGet("/treblle", () => "Treblle is awesome")
+    .UseTreblle();
+
 todoItems.MapGet("/", async (TodoDb db) =>
-    await db.Todos.ToListAsync());
+    await db.Todos.ToListAsync())
+    .UseTreblle();
 
 todoItems.MapGet("/notComplete", async (TodoDb db) =>
-    await db.Todos.Where(t => t.IsNotComplete).ToListAsync());
+    await db.Todos.Where(t => t.IsNotComplete).ToListAsync())
+    .UseTreblle();
 
 todoItems.MapGet("/complete", async (TodoDb db) =>
-    await db.Todos.Where(t => t.IsComplete).ToListAsync());
+    await db.Todos.Where(t => t.IsComplete).ToListAsync())
+    .UseTreblle();
 
 todoItems.MapGet("/{id}", async (int id, TodoDb db) =>
     await db.Todos.FindAsync(id)
         is Todo todo
             ? Results.Ok(todo)
-            : Results.NotFound());
+            : Results.NotFound())
+    .UseTreblle();
 
 todoItems.MapPost("/", async (Todo todo, TodoDb db) =>
 {
@@ -28,7 +37,9 @@ todoItems.MapPost("/", async (Todo todo, TodoDb db) =>
     await db.SaveChangesAsync();
 
     return Results.Created($"/todoitems/{todo.Id}", todo);
-});
+
+ }).UseTreblle();
+
 
 todoItems.MapPut("/{id}", async (int id, Todo inputTodo, TodoDb db) =>
 {
@@ -42,7 +53,7 @@ todoItems.MapPut("/{id}", async (int id, Todo inputTodo, TodoDb db) =>
     await db.SaveChangesAsync();
 
     return Results.NoContent();
-});
+}).UseTreblle();
 
 todoItems.MapDelete("/{id}", async (int id, TodoDb db) =>
 {
@@ -52,8 +63,9 @@ todoItems.MapDelete("/{id}", async (int id, TodoDb db) =>
         await db.SaveChangesAsync();
         return Results.NoContent();
     }
-
     return Results.NotFound();
-});
+}).UseTreblle();
+
+app.UseTreblle(useExceptionHandler: true);
 
 app.Run();

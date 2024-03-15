@@ -4,4 +4,5 @@
     public string? Name { get; set; }
     public bool IsComplete { get; set; }
     public bool IsNotComplete { get; set; }
+    public string? treblle { get; set; }
 }

@@ -10,6 +10,9 @@ var todoItems = app.MapGroup("/todoitems");
 todoItems.MapGet("/", async (TodoDb db) =>
     await db.Todos.ToListAsync());
 
+todoItems.MapGet("/notComplete", async (TodoDb db) =>
+    await db.Todos.Where(t => t.IsNotComplete).ToListAsync());
+
 todoItems.MapGet("/complete", async (TodoDb db) =>
     await db.Todos.Where(t => t.IsComplete).ToListAsync());
 

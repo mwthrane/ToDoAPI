@@ -42,3 +42,11 @@ DELETE {{ToDoAPI_HostAddress}}/todoitems/1
 GET {{ToDoAPI_HostAddress}}/todoitems/
 
 ###
+
+GET {{ToDoAPI_HostAddress}}/todoitems/
+
+###
+
+GET {{ToDoAPI_HostAddress}}/todoitems/
+
+###

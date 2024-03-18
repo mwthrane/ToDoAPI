@@ -1,11 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using Treblle.Net.Core;
 
+
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-builder.Services.AddTreblle("BimNc8dLhG2AYYGL9HCFVk4X4JPRylUa", "ePNDo6aOkkJWznwE");
+var projectId = Environment.GetEnvironmentVariable("TREBLLE_PROJECT_ID");
+var apiKey = Environment.GetEnvironmentVariable("TREBLLE_API_KEY");
+builder.Services.AddTreblle(apiKey, projectId);
+
 var app = builder.Build();
+
 
 var todoItems = app.MapGroup("/todoitems");
 

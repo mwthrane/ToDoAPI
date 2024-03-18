@@ -1,4 +1,4 @@
-﻿@ToDoAPI_HostAddress = http://localhost:32769
+﻿@ToDoAPI_HostAddress = http://localhost:32783
 
 POST {{ToDoAPI_HostAddress}}/todoitems
 
@@ -32,7 +32,7 @@ Content-Type: application/json
 
 ###
 
-DELETE {{ToDoAPI_HostAddress}}/todoitems/1
+DELETE {{ToDoAPI_HostAddress}}/todoitems/2
 
 ###
 
@@ -48,6 +48,6 @@ GET {{ToDoAPI_HostAddress}}/todoitems/
 
 ###
 
-GET {{ToDoAPI_HostAddress}}/todoitems/2
+GET {{ToDoAPI_HostAddress}}/todoitems/3
 
 ###

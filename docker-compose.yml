@@ -4,8 +4,7 @@ services:
   todoapi:
     image: ${DOCKER_REGISTRY-}todoapi
     ports:
-    - "32769:8080"
-    - "32770:8081"
+    - "32783:8080"
     build:
       context: .
       dockerfile: ToDoAPI/Dockerfile

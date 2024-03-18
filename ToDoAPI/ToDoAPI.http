@@ -1,4 +1,4 @@
-﻿@ToDoAPI_HostAddress = https://localhost:7143
+﻿@ToDoAPI_HostAddress = http://localhost:32769
 
 POST {{ToDoAPI_HostAddress}}/todoitems
 
@@ -29,9 +29,6 @@ Content-Type: application/json
   "name": "feed fish",
   "isComplete": false
 }
-###
-
-PUT {{ToDoAPI_HostAddress}}/todoitems/{id}
 
 ###
 
@@ -40,5 +37,17 @@ DELETE {{ToDoAPI_HostAddress}}/todoitems/1
 ###
 
 GET {{ToDoAPI_HostAddress}}/todoitems/
+
+###
+
+GET {{ToDoAPI_HostAddress}}/todoitems/
+
+###
+
+GET {{ToDoAPI_HostAddress}}/todoitems/
+
+###
+
+GET {{ToDoAPI_HostAddress}}/todoitems/2
 
 ###

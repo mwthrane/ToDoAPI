@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  todoapi:
+    image: ${DOCKER_REGISTRY-}todoapi
+    ports:
+    - "32769:8080"
+    - "32770:8081"
+    build:
+      context: .
+      dockerfile: ToDoAPI/Dockerfile

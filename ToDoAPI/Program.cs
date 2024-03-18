@@ -1,14 +1,25 @@
 using Microsoft.EntityFrameworkCore;
 using Treblle.Net.Core;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-var projectId = Environment.GetEnvironmentVariable("TREBLLE_PROJECT_ID");
-var apiKey = Environment.GetEnvironmentVariable("TREBLLE_API_KEY");
-builder.Services.AddTreblle(apiKey, projectId);
+
+if (builder.Environment.IsDevelopment())
+{
+    var projectId = builder.Configuration["ToDoAPI:TREBLLE_PROJECT_ID"];
+    var apiKey = builder.Configuration["ToDoAPI:TREBLLE_API_KEY"];
+    
+    builder.Services.AddTreblle(apiKey, projectId);
+}
+else if (builder.Environment.IsProduction())
+{
+    var projectId = Environment.GetEnvironmentVariable("TREBLLE_PROJECT_ID");
+    var apiKey = Environment.GetEnvironmentVariable("TREBLLE_API_KEY");
+
+    builder.Services.AddTreblle(apiKey, projectId);
+}
 
 var app = builder.Build();
 
@@ -37,6 +48,7 @@ todoItems.MapGet("/{id}", async (int id, TodoDb db) =>
             : Results.NotFound())
     .UseTreblle();
 
+
 todoItems.MapPost("/", async (Todo todo, TodoDb db) =>
 {
     db.Todos.Add(todo);
@@ -60,6 +72,7 @@ todoItems.MapPut("/{id}", async (int id, Todo inputTodo, TodoDb db) =>
 
     return Results.NoContent();
 }).UseTreblle();
+
 
 todoItems.MapDelete("/{id}", async (int id, TodoDb db) =>
 {

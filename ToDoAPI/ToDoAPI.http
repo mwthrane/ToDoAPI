@@ -1,4 +1,4 @@
-﻿@ToDoAPI_HostAddress = http://localhost:32783
+﻿@ToDoAPI_HostAddress = http://localhost:32791
 
 POST {{ToDoAPI_HostAddress}}/todoitems
 
@@ -8,7 +8,7 @@ POST {{ToDoAPI_HostAddress}}/todoitems
 Content-Type: application/json
 
 {
-  "name":"walk dog",
+  "name":"milk cow",
   "isComplete":true
 }
 ###

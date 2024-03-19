@@ -11,7 +11,7 @@ if (builder.Environment.IsDevelopment())
     var projectId = builder.Configuration["ToDoAPI:TREBLLE_PROJECT_ID"];
     var apiKey = builder.Configuration["ToDoAPI:TREBLLE_API_KEY"];
     
-    builder.Services.AddTreblle(apiKey, projectId);
+    builder.Services.AddTreblle(apiKey, projectId); 
 }
 else if (builder.Environment.IsProduction())
 {
